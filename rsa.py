@@ -59,19 +59,24 @@ class keyGenerator:
         p = self.primeGeneration(digit)
         q = self.primeGeneration(digit)
         n = p*q
+        print("p"+p.__str__())
+        print("q"+q.__str__())
         phin = (p-1)*(q-1)
+        print("phin"+phin.__str__())
         e = phin-1
+        print("breakpoint1")
         for i in range(2,phin -1):
+            print(i)
             if(fractions._gcd(i,phin) == 1):
                 e = i
                 break
         privateKey = 0
-        for i in range(1,1000):
-            product = i*phin+1
-            print(product)
-            if(product%e == 0):
-                privateKey = product
-                break
+        for i in range(0,phin):
+            print(i.__str__()+"/"+phin.__str__())
+            if i* e %phin == 1:
+
+                privateKey = i
+
         file = open('n.txt','w')
         file.write(n.__str__())
         file.close()
@@ -92,5 +97,19 @@ def squareAndMultiply(exponent, base, modulus):
             result = result*base%modulus
     return result
 
+def handle(a, en = 1):
+    file = open('n.txt','r')
+    n = file.read()
+    n = int(n)
+    file.close()
+    if en == 1:
+        file = open('e.txt','r')
+    else:
+        file = open('d.txt','r')
+    e = file.read()
+    e = int(e)
+    file.close()
+    return squareAndMultiply(e,a,n)
+
 a = keyGenerator()
-a.keyGeneration(500)
+a.keyGeneration(5)
