@@ -109,7 +109,10 @@ def handle(a, en = 1):
     e = file.read()
     e = int(e)
     file.close()
-    return squareAndMultiply(e,a,n)
+    #return squareAndMultiply(e,a,n)
+    return pow(a,e)%n
 
 a = keyGenerator()
-a.keyGeneration(5)
+a = handle(1251)
+print(a)
+print(handle(a,0))
